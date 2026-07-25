@@ -15,7 +15,7 @@ Este documento define la fuente de verdad, convenciones de ingeniería, restricc
 
 ## 2. Comandos de Entorno y Ejecución
 
-- **Servicios e Infraestructura:** `docker-compose up -d` (Postgres on port 5432).
+- **Servicios e Infraestructura:** `docker compose up -d` (Postgres on port 5432).
 - **Run Backend:** `cd backend && uvicorn app.main:app --reload`
 - **Run Frontend:** `cd frontend && npm run dev`
 - **Testing:** `pytest` (Backend unit & integration tests).
