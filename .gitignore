@@ -34,3 +34,34 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python & Virtual Environments
+__pycache__/
+*.so
+.Python
+
+# Environment Variables & Secrets (Nunca subir llaves)
+.env
+.env.local
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# LangGraph & Local Databases
+*.db
+*.sqlite
+quotes_state.db
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Node.js / Next.js (Para la Fase 4)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/

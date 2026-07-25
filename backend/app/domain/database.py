@@ -29,7 +29,7 @@ PRODUCTS_DB: Dict[str, Product] = {
         sku="HX-200",
         name="Casco Industrial de Alta Proteccion",
         unit_price=50.0,
-        stock=100,
+        stock=500,
     ),
     "TX-500": Product(
         sku="TX-500",
