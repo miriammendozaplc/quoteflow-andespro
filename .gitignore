@@ -39,6 +39,10 @@ next-env.d.ts
 __pycache__/
 *.so
 .Python
+env/
+venv/
+ENV/
+.venv/
 
 # Environment Variables & Secrets (Nunca subir llaves)
 .env
