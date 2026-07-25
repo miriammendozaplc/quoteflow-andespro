@@ -35,18 +35,24 @@ async def extract_intent_node(state: QuoteState) -> Dict[str, Any]:
     llm = get_llm()
     
     if llm is None:
-        # Fallback Mock para modo test / desarrollo local sin API Key
+        # Fallback Mock Inteligente con Regex para Pruebas Locales
+        import re
         raw_text = state["raw_text"].lower()
         requested_items = []
         
-        if "hx-200" in raw_text:
-            qty = 250 if "250" in raw_text else (20 if "20" in raw_text else 10)
+        # Extraer cantidad dinámica junto a HX-200 o cascos
+        qty_match = re.search(r'(\d+)\s*(cascos|hx-200|botas|tx-500)', raw_text)
+        qty = int(qty_match.group(1)) if qty_match else 20
+        
+        if "hx-200" in raw_text or "cascos" in raw_text:
             requested_items.append(RequestedItem(sku="HX-200", quantity=qty))
-        if "tx-500" in raw_text:
-            qty = 50 if "50" in raw_text else 5
+        elif "tx-500" in raw_text or "botas" in raw_text:
             requested_items.append(RequestedItem(sku="TX-500", quantity=qty))
             
-        discount = 8.0 if "8%" in raw_text or "8" in raw_text else (5.0 if "5%" in raw_text else 0.0)
+        # Extraer porcentaje de descuento dinámico (ej. 1% o 8%)
+        discount_match = re.search(r'(\d+)%\s*de\s*descuento', raw_text)
+        discount = float(discount_match.group(1)) if discount_match else 0.0
+        
         customer = state.get("customer_id") or "CUST-GOLD-01"
         
         extracted = ExtractedQuoteRequest(
